@@ -227,7 +227,7 @@ class BlogCard extends StatelessWidget {
                 child: Card(
                   clipBehavior: Clip.antiAlias,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   elevation: 10,
                   child: Ink.image(
@@ -235,7 +235,7 @@ class BlogCard extends StatelessWidget {
                       '$urlgambar1',
                     ),
                     height: 120,
-                    width: 200,
+                    width: 120,
                     fit: BoxFit.cover,
                   ),
                 )),
@@ -249,19 +249,10 @@ class BlogCard extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.6,
                   child: Text(
-                    bab!,
-                    style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18,
-                        color: Colors.black),
-                  ),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.6,
-                  child: Text(
                     judul!,
+                    textAlign: TextAlign.justify,
                     style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w500, fontSize: 16),
+                        fontWeight: FontWeight.w500, fontSize: 12),
                   ),
                 ),
                 SizedBox(

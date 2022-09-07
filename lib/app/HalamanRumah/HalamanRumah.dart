@@ -9,13 +9,12 @@ import 'package:line_icons/line_icons.dart';
 
 import '../blog/BlogDepan.dart';
 import '../QR/ScanQR.dart';
-import '../home/reminder.dart';
 import '../lihatprofil.dart';
 import '../puskesmas.dart';
+import '../tab3/Data.dart';
 import '../tab3/FAQ.dart';
 import '../tab3/kontak.dart';
 import '../tab3/tab3.dart';
-import '../../api/ColorsApi.dart';
 
 class HalamanRumah extends StatefulWidget {
   const HalamanRumah({Key? key}) : super(key: key);
@@ -33,10 +32,10 @@ class _HalamanRumahState extends State<HalamanRumah> {
 
     final FirebaseAuth auth = FirebaseAuth.instance;
     final User? user = auth.currentUser;
-    final useremail = user!.email;
+    final useremail = user?.email;
     final ButtonStyle Buttonstyle = ElevatedButton.styleFrom(
-      onPrimary: Colors.black,
-      primary: Colors.white,
+      foregroundColor: Colors.black,
+      backgroundColor: Colors.white,
       minimumSize: Size(MediaQuery.of(context).size.width, 48),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       shape: const RoundedRectangleBorder(
@@ -48,22 +47,13 @@ class _HalamanRumahState extends State<HalamanRumah> {
       backgroundColor: Colors.white,
       extendBody: true,
       appBar: AppBar(
-        title: const Text('DIA.BETO'),
+        title: const Text('Blood Type Checker'),
         centerTitle: true,
         titleTextStyle: GoogleFonts.pathwayGothicOne(
             fontWeight: FontWeight.w500, fontSize: 24, color: Colors.white),
-        backgroundColor: IsiQueColors.isiqueblue.shade400,
+        backgroundColor: const Color(0xFFE1001E),
         elevation: 0,
         automaticallyImplyLeading: true,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 12),
-          child: IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const reminder()));
-              },
-              icon: const Icon(LineIcons.bell)),
-        ),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 12),
@@ -124,7 +114,7 @@ class _HalamanRumahState extends State<HalamanRumah> {
           child: Center(
               child: (_selectedIndex == 0)
                   ? Container(
-                      color: IsiQueColors.isiqueblue.shade400,
+                      color: const Color(0xFFE1001E),
                       child: Container(
                         decoration: const BoxDecoration(
                           color: Colors.white,
@@ -135,26 +125,14 @@ class _HalamanRumahState extends State<HalamanRumah> {
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height,
-                          child: ListView(
-                            children: [
-                              ElevatedButton(
-                                  child: const Text('scan QR'),
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const QRViewExample()));
-                                  }),
-                            ],
-                          ),
+                          child: const QRViewExample(),
                         ),
                       ))
                   : (_selectedIndex == 1)
                       ? ListView(
                           children: [
                             Container(
-                                color: IsiQueColors.isiqueblue.shade400,
+                                color: const Color(0xFFE1001E),
                                 child: Container(
                                   decoration: const BoxDecoration(
                                     color: Colors.white,
@@ -170,7 +148,7 @@ class _HalamanRumahState extends State<HalamanRumah> {
                           ? ListView(
                               children: [
                                 Container(
-                                    color: IsiQueColors.isiqueblue.shade400,
+                                    color: const Color(0xFFE1001E),
                                     child: Container(
                                       decoration: const BoxDecoration(
                                         color: Colors.white,
@@ -185,7 +163,7 @@ class _HalamanRumahState extends State<HalamanRumah> {
                           : ListView(
                               children: [
                                 Container(
-                                    color: IsiQueColors.isiqueblue.shade400,
+                                    color: const Color(0xFFE1001E),
                                     child: Container(
                                       decoration: const BoxDecoration(
                                         color: Colors.white,
@@ -196,6 +174,24 @@ class _HalamanRumahState extends State<HalamanRumah> {
                                       child: Column(
                                         children: [
                                           const Tab3(),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 16, right: 16),
+                                            child: ElevatedButton(
+                                                style: Buttonstyle,
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const DataUserCekGoldar()));
+                                                },
+                                                child: const Text(
+                                                    'DATA GOLONGAN DARAH')),
+                                          ),
+                                          const SizedBox(
+                                            height: 12,
+                                          ),
                                           Padding(
                                             padding: const EdgeInsets.only(
                                                 left: 16, right: 16),
@@ -225,8 +221,8 @@ class _HalamanRumahState extends State<HalamanRumah> {
                                                         return const kontak();
                                                       });
                                                 },
-                                                child:
-                                                    const Text('kontak PKM')),
+                                                child: const Text(
+                                                    'Hubungi Admin Blood Type Checker')),
                                           ),
                                           const SizedBox(
                                             height: 12,
@@ -250,7 +246,7 @@ class _HalamanRumahState extends State<HalamanRumah> {
             child: GNav(
               rippleColor: Colors.white,
               hoverColor: Colors.white,
-              activeColor: IsiQueColors.isiqueblue.shade500,
+              activeColor: const Color(0xFFE1001E),
               iconSize: 24,
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
               duration: const Duration(milliseconds: 300),

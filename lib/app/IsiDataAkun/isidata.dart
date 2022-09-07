@@ -13,7 +13,6 @@ import 'package:permission_handler/permission_handler.dart';
 
 import 'package:path/path.dart';
 import 'package:pkmzuhal/app/HalamanRumah/HalamanRumah.dart';
-import '../../api/ColorsApi.dart';
 import '../../api/DatabaseServices.dart';
 
 class IsiData extends StatefulWidget {
@@ -223,12 +222,12 @@ class _IsiDataState extends State<IsiData> {
         title: const Text('Isi Data'),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: IsiQueColors.isiqueblue.shade400,
+        backgroundColor:const Color(0xFFE1001E),
       ),
       body: Theme(
         data: ThemeData(
             colorScheme: ColorScheme.fromSwatch()
-                .copyWith(primary: IsiQueColors.isiqueblue.shade400,)),
+                .copyWith(primary: const Color(0xFFE1001E),)),
         child: Stepper(
             type: StepperType.vertical,
             currentStep: currentstep,

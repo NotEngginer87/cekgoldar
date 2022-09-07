@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../api/ColorsApi.dart';
 import 'lihatprofil.dart';
 
 class infopasien extends StatefulWidget {
@@ -27,7 +26,7 @@ class _infopasienState extends State<infopasien> {
 
     return Container(
       decoration: BoxDecoration(
-        color: IsiQueColors.isiqueblue.shade400,
+        color: Color(0xFFE1001E),
       ),
       width: MediaQuery.of(context).size.width,
       height: 80,
@@ -51,10 +50,10 @@ class _infopasienState extends State<infopasien> {
                     alignment: Alignment.center,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const [
                         Text(
                           'hello',
-                          style: TextStyle(color: IsiQueColors.isiqueblue.shade400,),
+                          style: TextStyle(color: Color(0xFFE1001E),),
                         ),
                         SizedBox(
                           height: 4,

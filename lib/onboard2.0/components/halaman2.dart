@@ -81,14 +81,7 @@ class RelaxView extends StatelessWidget {
               SlideTransition(
                 position: relaxAnimation,
                 child: const Text(
-                  "Rongga Mulut Terasa",
-                  style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
-                ),
-              ),
-              SlideTransition(
-                position: relaxAnimation,
-                child: const Text(
-                  "Anda Diabetes ?",
+                  "Tahukah kamu?",
                   style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -98,7 +91,7 @@ class RelaxView extends StatelessWidget {
                   constraints:
                       const BoxConstraints(maxWidth: 350, maxHeight: 250),
                   child: Image.asset(
-                    'assets/onboard/confused1.png',
+                    'assets/onboard/Halaman1.png',
                     fit: BoxFit.contain,
                   ),
                 ),
@@ -109,7 +102,7 @@ class RelaxView extends StatelessWidget {
                   padding:
                       EdgeInsets.only(left: 64, right: 64, top: 16, bottom: 16),
                   child: Text(
-                    "Banyak penderita Diabetes yang tidak menyadari kalau ternyata dia mengidap diabetes",
+                    "Ada sejuta misteri di dalam darah. Berbeda golongan darahnya akan berbeda pula keistimewaannya",
                     textAlign: TextAlign.center,
                   ),
                 ),

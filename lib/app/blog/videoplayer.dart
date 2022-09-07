@@ -66,7 +66,7 @@ class _VideoAppState extends State<VideoApp> {
                 ? perlihatkan
                     ? MediaQuery.of(context).size.height - 16
                     : MediaQuery.of(context).size.height
-                : MediaQuery.of(context).size.width * 9 / 16,
+                : MediaQuery.of(context).size.width * 0.5625,
             child: InkWell(
               child: Stack(
                 alignment: Alignment.center,

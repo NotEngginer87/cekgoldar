@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_types_as_parameter_names, non_constant_identifier_names, file_names, no_leading_underscores_for_local_identifiers, deprecated_member_use
+
 import 'dart:developer';
 import 'dart:io';
 
@@ -7,11 +9,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gender_picker/source/enums.dart';
 import 'package:gender_picker/source/gender_picker.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:pkmzuhal/api/DatabaseServices.dart';
-import 'package:pkmzuhal/app/QR/isidataQR.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-import '../HalamanRumah/HalamanRumah.dart';
 
 class QRViewExample extends StatefulWidget {
   const QRViewExample({Key? key}) : super(key: key);
@@ -67,172 +69,405 @@ class _QRViewExampleState extends State<QRViewExample> {
 
   @override
   Widget build(BuildContext context) {
+
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     CollectionReference console = firestore.collection('console');
-
     final FirebaseAuth auth = FirebaseAuth.instance;
     final User? user = auth.currentUser;
-    final emaila = user!.email;
+    final useremail = user?.email;
+
+    const String url = 'https://drive.google.com/file/d/1BUdlCvgmFK54FieXmDaxlljE8H9vISQX/view?usp=sharing';
+    void _launchURL() async {
+      if (!await launch(url)) throw 'Could not launch $url';
+    }
     return Scaffold(
+      backgroundColor: Colors.white,
       body: (result != null)
           ? Center(
-          child: Padding(
-            padding:
-            const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
-            child: ListView(
-              children: [
-                Text('Golongan Darah :  ${result?.code}'),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'nama : ',
-                      textAlign: TextAlign.left,
+              child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+              child: ListView(
+                children: [
+                  Card(
+                    elevation: 0,
+                    color: Colors.white38,
+                    clipBehavior: Clip.antiAlias,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
                     ),
-                    TextFormField(
-                      controller: nama,
-                      onChanged: (value) {
-                        setState(() {
-                          switchnama = true;
-                        });
-                      },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 64,
+                      color: Colors.red.shade50,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          Icon(
+                            LineIcons.questionCircle,
+                            size: 24,
+                            color: Colors.red.shade500,
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            child: Text(
+                              'Mohon untuk mengisi data berikut dengan baik dan benar, demi terpenuhinya darah untuk Indonesia',
+                              style: TextStyle(
+                                  color: Colors.red.shade500, fontSize: 12),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    const Text(
-                      'Jenis Kelamin : ',
-                      textAlign: TextAlign.left,
-                    ),
-                    GenderPickerWithImage(
-                      showOtherGender: false,
-                      verticalAlignedText: true,
-                      equallyAligned: true,
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Row(
+                    children: [
+                      const Text('Golongan Darah :  '),
+                      Text(
+                        '${result?.code}',
+                        style: const TextStyle(fontSize: 24),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      TextFormField(
+                        controller: nama,
+                        onChanged: (value) {
+                          setState(() {
+                            switchnama = true;
+                          });
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Colors.white,
+                          //add prefix icon
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
 
-                      selectedGenderTextStyle: const TextStyle(
-                          color: Color(0xFF8b32a8),
-                          fontWeight: FontWeight.bold),
-                      unSelectedGenderTextStyle: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.normal),
-                      selectedGender: (genderr == 'Laki-Laki')
-                          ? Gender.Male
-                          : (genderr == 'Perempuan')
-                          ? Gender.Female
-                          : null,
-                      onChanged: (Gender) async {
-                        switchgender = true;
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Colors.blue,
+                            ),
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                          fillColor: Colors.grey,
 
-                        if (Gender?.index == 0) {
-                          genderr = 'Laki-Laki';
-                        } else {
-                          genderr = 'Perempuan';
-                        }
-                        print(Gender?.index);
-                      },
-                      animationDuration:
-                      const Duration(milliseconds: 300),
-                      isCircular: true,
-                      maleText: 'Laki-Laki',
-                      femaleText: 'Perempuan',
-                      // default : true,
-                      opacityOfGradient: 0.4,
-                      padding: const EdgeInsets.all(3),
-                      size: 120, //default : 40
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    const Text(
-                      'Umur : ',
-                      textAlign: TextAlign.left,
-                    ),
-                    TextFormField(
-                      controller: umurcontrol,
-                      keyboardType: TextInputType.phone,
-                      onChanged: (value) {
-                        setState(() {
-                          switchumur = true;
-                        });
-                      },
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    const Text(
-                      'Nomor HP : ',
-                      textAlign: TextAlign.left,
-                    ),
-                    TextFormField(
-                      controller: noHP,
-                      keyboardType: TextInputType.phone,
-                      onChanged: (value) {
-                        setState(() {
-                          switchnotelepon = true;
-                        });
-                      },
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    const Text('Alamat'),
-                    TextFormField(
-                      controller: alamat,
-                      keyboardType: TextInputType.streetAddress,
-                      onChanged: (value) {
-                        setState(() {
-                          switchalamat = true;
-                        });
-                      },
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    StreamBuilder<DocumentSnapshot>(
-                      stream: console
-                          .doc('nomorantriangolongandarah')
-                          .snapshots(),
-                      builder: (context, AsyncSnapshot snapshot) {
-                        if (snapshot.hasData) {
-                          Map<String, dynamic> data = snapshot.data!
-                              .data() as Map<String, dynamic>;
+                          //create lable
+                          labelText: 'Nama',
+                          //lable style
+                          labelStyle: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      const Text(
+                        'Jenis Kelamin : ',
+                        textAlign: TextAlign.left,
+                      ),
+                      GenderPickerWithImage(
+                        showOtherGender: false,
+                        verticalAlignedText: true,
+                        equallyAligned: true,
 
-                          int count = data['count'];
+                        selectedGenderTextStyle: const TextStyle(
+                            color: Color(0xFF8b32a8),
+                            fontWeight: FontWeight.bold),
+                        unSelectedGenderTextStyle: const TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.normal),
+                        selectedGender: (genderr == 'Laki-Laki')
+                            ? Gender.Male
+                            : (genderr == 'Perempuan')
+                                ? Gender.Female
+                                : null,
+                        onChanged: (Gender) async {
+                          switchgender = true;
 
-                          return ElevatedButton(
-                              onPressed: () {
-                                DatabaseServices
-                                    .inccountgolongandarah();
-                                DatabaseServices
-                                    .setdatagolongandarahorang(
-                                    count,
-                                    nama.text,
-                                    genderr,
-                                    noHP.text,
-                                    alamat.text,
-                                    result?.code);
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                      const HalamanRumah()),
-                                );
-                              },
-                              child: const Text('Kirim'));
-                        }
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ))
+                          if (Gender?.index == 0) {
+                            genderr = 'Laki-Laki';
+                          } else {
+                            genderr = 'Perempuan';
+                          }
+                          if (kDebugMode) {
+                            print(Gender?.index);
+                          }
+                        },
+                        animationDuration: const Duration(milliseconds: 300),
+                        isCircular: true,
+                        // default : true,
+                        opacityOfGradient: 0.4,
+                        padding: const EdgeInsets.all(3),
+                        size: 80,
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      TextFormField(
+                        controller: umurcontrol,
+                        keyboardType: TextInputType.phone,
+                        onChanged: (value) {
+                          setState(() {
+                            switchumur = true;
+                          });
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Colors.white,
+                          //add prefix icon
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Colors.blue,
+                            ),
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                          fillColor: Colors.grey,
+
+                          //create lable
+                          labelText: 'Umur',
+                          //lable style
+                          labelStyle: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      TextFormField(
+                        controller: noHP,
+                        keyboardType: TextInputType.phone,
+                        onChanged: (value) {
+                          setState(() {
+                            switchnotelepon = true;
+                          });
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Colors.white,
+                          //add prefix icon
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Colors.blue,
+                            ),
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                          fillColor: Colors.grey,
+
+                          //create lable
+                          labelText: 'Nomor Telepon',
+                          //lable style
+                          labelStyle: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      TextFormField(
+                        controller: alamat,
+                        keyboardType: TextInputType.streetAddress,
+                        onChanged: (value) {
+                          setState(() {
+                            switchalamat = true;
+                          });
+                        },
+                        decoration: InputDecoration(
+                          focusColor: Colors.white,
+                          //add prefix icon
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Colors.blue,
+                            ),
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                          fillColor: Colors.grey,
+
+                          //create lable
+                          labelText: 'Alamat',
+                          //lable style
+                          labelStyle: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 24,
+                      ),
+                      Center(
+                        child: StreamBuilder<DocumentSnapshot>(
+                          stream: console
+                              .doc('nomorantriangolongandarah')
+                              .snapshots(),
+                          builder: (context, AsyncSnapshot snapshot) {
+                            if (snapshot.hasData) {
+                              Map<String, dynamic> data =
+                                  snapshot.data!.data() as Map<String, dynamic>;
+
+                              int count = data['count'];
+
+                              return SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color(0xFFE1001E),
+                                      foregroundColor: Colors
+                                          .white, // foreground (text) color
+                                    ),
+                                    onPressed: () {
+                                      DatabaseServices.inccountgolongandarah();
+                                      DatabaseServices
+                                          .setdatagolongandarahorang(
+                                              count,
+                                              nama.text,
+                                              genderr,
+                                              noHP.text,
+                                              alamat.text,
+                                              result?.code);
+                                      DatabaseServices
+                                          .setdatagolongandarahorangperuser(
+                                              count,
+                                              useremail!,
+                                              nama.text,
+                                              genderr,
+                                              noHP.text,
+                                              alamat.text,
+                                              result?.code);
+                                      showDialog(
+                                        context: context,
+                                        builder: (ctx) => AlertDialog(
+                                          title: const Text(
+                                              "Kontak Admin Blood Type Checker"),
+                                          content: const Text(
+                                              "Terima kasih sudah melakukan cek golongan darah, jika anda ingin membaca materi mengenai darah, bisa download lewat tombol berikut",
+                                              textAlign: TextAlign.justify),
+                                          actions: <Widget>[
+                                            Center(
+                                                child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                ElevatedButton(
+                                                    onPressed: () {
+                                                      result = null;
+
+                                                      Navigator.pop(ctx);
+                                                      nama.text = '';
+                                                      umurcontrol.text = '';
+                                                      alamat.text = '';
+                                                      noHP.text = '';
+                                                    },
+                                                    style: ButtonStyle(
+                                                      backgroundColor:
+                                                          MaterialStateProperty
+                                                              .resolveWith<
+                                                                  Color>(
+                                                        (Set<MaterialState>
+                                                            states) {
+                                                          if (states.contains(
+                                                              MaterialState
+                                                                  .pressed)) {
+                                                            return const Color(
+                                                                0xFFE1001E);
+                                                          }
+                                                          return Colors
+                                                              .white; // Use the component's default.
+                                                        },
+                                                      ),
+                                                    ),
+                                                    child: const Text(
+                                                      "Kembali",
+                                                      style: TextStyle(
+                                                          color: Color(
+                                                              0xFFE1001E)),
+                                                    )),
+                                                ElevatedButton(
+                                                    onPressed: () {
+                                                      _launchURL();
+                                                    },
+                                                    style: ButtonStyle(
+                                                      backgroundColor:
+                                                          MaterialStateProperty
+                                                              .resolveWith<
+                                                                  Color>(
+                                                        (Set<MaterialState>
+                                                            states) {
+                                                          if (states.contains(
+                                                              MaterialState
+                                                                  .pressed)) {
+                                                            return Colors.white;
+                                                          }
+                                                          return const Color(
+                                                              0xFFE1001E); // Use the component's default.
+                                                        },
+                                                      ),
+                                                    ),
+                                                    child: const Text(
+                                                      "Download",
+                                                      style: TextStyle(
+                                                          color: Colors.white),
+                                                    )),
+                                              ],
+                                            )),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                    child: const Text(
+                                      'Kirim',
+                                      style: TextStyle(fontSize: 14),
+                                    )),
+                              );
+                            }
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ))
           : Column(
               children: <Widget>[
-                Expanded(flex: 4, child: _buildQrView(context)),
+                Expanded(flex: 6, child: _buildQrView(context)),
                 Expanded(
                   flex: 1,
                   child: FittedBox(
@@ -244,74 +479,77 @@ class _QRViewExampleState extends State<QRViewExample> {
                           Text(
                               'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
                         else
-                          const Text('Scan a code'),
+                          const Text('Scan Golongan Darah'),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            Container(
-                              margin: const EdgeInsets.all(8),
-                              child: ElevatedButton(
-                                  onPressed: () async {
-                                    await controller?.toggleFlash();
-                                    setState(() {});
+                            Card(
+                                elevation: 0,
+                                color: Colors.grey.shade400,
+                                clipBehavior: Clip.antiAlias,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                                child: FutureBuilder(
+                                  future: controller?.getFlashStatus(),
+                                  builder: (context, snapshot) {
+                                    return IconButton(
+                                      onPressed: () async {
+                                        await controller?.toggleFlash();
+                                        setState(() {});
+                                      },
+                                      icon: Icon(
+                                        LineIcons.lightningBolt,
+                                        color: (snapshot.data!)
+                                            ? Colors.yellow
+                                            : Colors.black,
+                                      ),
+                                      color: Colors.red,
+                                    );
                                   },
-                                  child: FutureBuilder(
-                                    future: controller?.getFlashStatus(),
-                                    builder: (context, snapshot) {
-                                      return Text('Flash: ${snapshot.data}');
-                                    },
-                                  )),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.all(8),
-                              child: ElevatedButton(
-                                  onPressed: () async {
-                                    await controller?.flipCamera();
-                                    setState(() {});
+                                )),
+                            Card(
+                                elevation: 0,
+                                color: Colors.grey.shade400,
+                                clipBehavior: Clip.antiAlias,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                                child: FutureBuilder(
+                                  future: controller?.getCameraInfo(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.data != null) {
+                                      return IconButton(
+                                        onPressed: () async {
+                                          await controller?.flipCamera();
+                                          setState(() {});
+                                        },
+                                        icon: Icon(
+                                          LineIcons.camera,
+                                          color:
+                                              (describeEnum(snapshot.data!) ==
+                                                      'front')
+                                                  ? Colors.black
+                                                  : Colors.white,
+                                        ),
+                                        color: Colors.red,
+                                      );
+                                    } else {
+                                      return const Text('loading');
+                                    }
                                   },
-                                  child: FutureBuilder(
-                                    future: controller?.getCameraInfo(),
-                                    builder: (context, snapshot) {
-                                      if (snapshot.data != null) {
-                                        return Text(
-                                            'Camera facing ${describeEnum(snapshot.data!)}');
-                                      } else {
-                                        return const Text('loading');
-                                      }
-                                    },
-                                  )),
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Container(
-                              margin: const EdgeInsets.all(8),
-                              child: ElevatedButton(
-                                onPressed: () async {
-                                  await controller?.pauseCamera();
-                                },
-                                child: const Text('pause',
-                                    style: TextStyle(fontSize: 20)),
-                              ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.all(8),
-                              child: ElevatedButton(
-                                onPressed: () async {
-                                  await controller?.resumeCamera();
-                                },
-                                child: const Text('resume',
-                                    style: TextStyle(fontSize: 20)),
-                              ),
-                            )
+                                )),
                           ],
                         ),
                       ],
                     ),
+                  ),
+                ),
+                const Expanded(
+                  flex: 1,
+                  child: SizedBox(
+                    height: 12,
                   ),
                 )
               ],
@@ -341,12 +579,37 @@ class _QRViewExampleState extends State<QRViewExample> {
   }
 
   void _onQRViewCreated(QRViewController controller) {
+    bool cek = false;
     setState(() {
       this.controller = controller;
     });
     controller.scannedDataStream.listen((scanData) {
       setState(() {
-        result = scanData;
+        if (scanData.code == 'A+') {
+          cek = true;
+        } else if (scanData.code == 'A-') {
+          cek = true;
+        } else if (scanData.code == 'B+') {
+          cek = true;
+        } else if (scanData.code == 'B-') {
+          cek = true;
+        } else if (scanData.code == 'AB+') {
+          cek = true;
+        } else if (scanData.code == 'AB-') {
+          cek = true;
+        } else if (scanData.code == 'O+') {
+          cek = true;
+        } else if (scanData.code == 'O-') {
+          cek = true;
+        } else {
+          cek = false;
+        }
+
+        if (cek == true) {
+          result = scanData;
+        } else {
+          result = null;
+        }
       });
     });
   }

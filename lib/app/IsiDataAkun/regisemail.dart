@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 
 import '../../api/AuthServices.dart';
-import '../../api/ColorsApi.dart';
 import '../HalamanRumah/HalamanRumah.dart';
 import 'isidata.dart';
 
@@ -24,10 +23,10 @@ class _RegisEmailScreenState extends State<RegisEmailScreen> {
           title: const Text('Login'),
           centerTitle: true,
           elevation: 0,
-          backgroundColor: IsiQueColors.isiqueblue.shade400,
+          backgroundColor: const Color(0xFFE1001E),
         ),
         body: Container(
-            color: IsiQueColors.isiqueblue.shade400,
+            color: const Color(0xFFE1001E),
             child: Container(
               decoration: const BoxDecoration(
                 color: Colors.white,
@@ -49,7 +48,7 @@ class _RegisEmailScreenState extends State<RegisEmailScreen> {
                         Padding(
                           padding: const EdgeInsets.all(24),
                           child: Image.asset(
-                            'assets/onboard/Logo transparan.png',
+                            'assets/onboard/Halaman3.png',
                             fit: BoxFit.contain,
                           ),
                         ),
@@ -71,13 +70,13 @@ class _RegisEmailScreenState extends State<RegisEmailScreen> {
                                       padding: const EdgeInsets.all(12.0),
                                       child: SlideAction(
                                         outerColor:
-                                            IsiQueColors.isiqueblue.shade400,
+                                        const Color(0xFFE1001E),
                                         innerColor: Colors.white,
                                         key: key,
                                         text:
-                                            "Let's Controll Diabetic Until Zero",
+                                            "Ayo Cek Golongan Darahmu",
                                         textStyle: const TextStyle(
-                                            fontSize: 20, color: Colors.white),
+                                            fontSize: 14, color: Colors.white),
                                         onSubmit: () {
                                           Navigator.push(context,
                                               MaterialPageRoute(builder:
@@ -99,7 +98,7 @@ class _RegisEmailScreenState extends State<RegisEmailScreen> {
                                     width:
                                         MediaQuery.of(context).size.width - 48,
                                     child: Card(
-                                      color: IsiQueColors.isiqueblue.shade400,
+                                      color: const Color(0xFFE1001E),
                                       clipBehavior: Clip.antiAlias,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(8),

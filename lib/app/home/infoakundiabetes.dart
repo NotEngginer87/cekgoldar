@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../api/ColorsApi.dart';
 
 class InfoAkunDiabetes extends StatefulWidget {
   const InfoAkunDiabetes({Key? key}) : super(key: key);
@@ -28,7 +27,7 @@ class _InfoAkunDiabetesState extends State<InfoAkunDiabetes> {
         centerTitle: true,
         titleTextStyle: GoogleFonts.pathwayGothicOne(
             fontWeight: FontWeight.w500, fontSize: 24, color: Colors.white),
-        backgroundColor: IsiQueColors.isiqueblue.shade400,
+        backgroundColor: const Color(0xFFE1001E),
         elevation: 0,
         automaticallyImplyLeading: true,
 

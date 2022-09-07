@@ -135,7 +135,6 @@ class SICCard extends StatelessWidget {
                         child: Text(
                           'sudah terbaca : $terbaca',
                           style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w500,
                               fontSize: 12,
                               color: Colors.grey),
                         ),
@@ -303,8 +302,7 @@ class _tampilanSICState extends State<tampilanSIC> {
                             width: MediaQuery.of(context).size.width,
                             child: Text(
                               judul,
-                              style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.w500, fontSize: 20),
+                              style: GoogleFonts.poppins( fontSize: 20),
                             ),
                           ),
                           SizedBox(
@@ -316,7 +314,6 @@ class _tampilanSICState extends State<tampilanSIC> {
                                   Text(
                                     'sudah dibaca : $terbaca kali',
                                     style: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.w500,
                                         fontSize: 14,
                                         color: Colors.grey),
                                   ),
@@ -331,7 +328,6 @@ class _tampilanSICState extends State<tampilanSIC> {
                                   Text(
                                     'narasumber : $narasumber',
                                     style: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.w500,
                                         fontSize: 14,
                                         color: Colors.grey),
                                   ),
@@ -346,7 +342,6 @@ class _tampilanSICState extends State<tampilanSIC> {
                                   Text(
                                     'umur  : $umurnarasumber',
                                     style: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.w500,
                                         fontSize: 14,
                                         color: Colors.grey),
                                   ),
@@ -375,8 +370,6 @@ class _tampilanSICState extends State<tampilanSIC> {
                                                 Text(
                                                   text1,
                                                   style: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FontWeight.w600,
                                                       fontSize: 16,
                                                       color: Colors.black),
                                                   textAlign: TextAlign.justify,
@@ -393,8 +386,6 @@ class _tampilanSICState extends State<tampilanSIC> {
                                                 Text(
                                                   text2,
                                                   style: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FontWeight.w600,
                                                       fontSize: 16,
                                                       color: Colors.black),
                                                   textAlign: TextAlign.left,
@@ -411,8 +402,6 @@ class _tampilanSICState extends State<tampilanSIC> {
                                                 Text(
                                                   text3,
                                                   style: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FontWeight.w600,
                                                       fontSize: 16,
                                                       color: Colors.black),
                                                   textAlign: TextAlign.left,
@@ -429,8 +418,6 @@ class _tampilanSICState extends State<tampilanSIC> {
                                                 Text(
                                                   text4,
                                                   style: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FontWeight.w600,
                                                       fontSize: 16,
                                                       color: Colors.black),
                                                   textAlign: TextAlign.left,
@@ -447,8 +434,6 @@ class _tampilanSICState extends State<tampilanSIC> {
                                                 Text(
                                                   text5,
                                                   style: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FontWeight.w600,
                                                       fontSize: 16,
                                                       color: Colors.black),
                                                   textAlign: TextAlign.left,
@@ -465,8 +450,6 @@ class _tampilanSICState extends State<tampilanSIC> {
                                                 Text(
                                                   text6,
                                                   style: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FontWeight.w600,
                                                       fontSize: 16,
                                                       color: Colors.black),
                                                   textAlign: TextAlign.left,
@@ -504,8 +487,6 @@ class _tampilanSICState extends State<tampilanSIC> {
                                                   textDirection:
                                                       TextDirection.ltr,
                                                   style: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FontWeight.w600,
                                                       fontSize: 16,
                                                       color: Colors.black),
                                                   textAlign: TextAlign.left,
@@ -522,8 +503,6 @@ class _tampilanSICState extends State<tampilanSIC> {
                                                 Text(
                                                   text8,
                                                   style: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FontWeight.w600,
                                                       fontSize: 16,
                                                       color: Colors.black),
                                                   textAlign: TextAlign.left,
@@ -540,8 +519,6 @@ class _tampilanSICState extends State<tampilanSIC> {
                                                 Text(
                                                   text9,
                                                   style: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FontWeight.w600,
                                                       fontSize: 16,
                                                       color: Colors.black),
                                                   textAlign: TextAlign.left,
@@ -558,8 +535,6 @@ class _tampilanSICState extends State<tampilanSIC> {
                                                 Text(
                                                   text10,
                                                   style: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FontWeight.w600,
                                                       fontSize: 16,
                                                       color: Colors.black),
                                                   textAlign: TextAlign.left,

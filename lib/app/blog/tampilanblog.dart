@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../api/ColorsApi.dart';
 
 class tampilanblog extends StatefulWidget {
   tampilanblog(
@@ -168,7 +167,7 @@ class _tampilanblogState extends State<tampilanblog> {
                         style: GoogleFonts.poppins(
                             fontWeight: FontWeight.w500,
                             fontSize: 14,
-                            color: IsiQueColors.isiqueblue.shade400,),
+                            color: Color(0xFFE1001E),),
                       ),
                     ),
                     SizedBox(
@@ -456,7 +455,7 @@ class _tampilanblogState extends State<tampilanblog> {
                                                 TextDecoration.underline,
                                             fontWeight: FontWeight.w500,
                                             fontSize: 12,
-                                            color: IsiQueColors.isiqueblue.shade400,),
+                                            color: Color(0xFFE1001E),),
                                         textAlign: TextAlign.left,
                                       ),
                                       SizedBox(
@@ -475,7 +474,7 @@ class _tampilanblogState extends State<tampilanblog> {
                                                 TextDecoration.underline,
                                             fontWeight: FontWeight.w500,
                                             fontSize: 12,
-                                            color: IsiQueColors.isiqueblue.shade400,),
+                                            color: Color(0xFFE1001E),),
                                         textAlign: TextAlign.left,
                                       ),
                                       SizedBox(
@@ -494,7 +493,7 @@ class _tampilanblogState extends State<tampilanblog> {
                                                 TextDecoration.underline,
                                             fontWeight: FontWeight.w500,
                                             fontSize: 12,
-                                            color: IsiQueColors.isiqueblue.shade400,),
+                                            color: Color(0xFFE1001E),),
                                         textAlign: TextAlign.left,
                                       ),
                                       SizedBox(

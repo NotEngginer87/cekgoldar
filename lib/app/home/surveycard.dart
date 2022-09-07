@@ -3,7 +3,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../../api/ColorsApi.dart';
 
 
 class surveycard extends StatefulWidget {
@@ -27,8 +26,7 @@ class _surveycardState extends State<surveycard> {
     CollectionReference listsurvey = firestore.collection('ListSurvey');
 
     final ButtonStyle Buttonstyle = ElevatedButton.styleFrom(
-      onPrimary: Colors.white,
-      primary: IsiQueColors.isiqueblue.shade400,
+      foregroundColor: Colors.white, backgroundColor: const Color(0xFFE1001E),
       elevation: 0,
       textStyle: const TextStyle(fontWeight: FontWeight.w900),
       minimumSize: const Size(96, 48),
@@ -42,7 +40,7 @@ class _surveycardState extends State<surveycard> {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Card(
           clipBehavior: Clip.antiAlias,
-          color: IsiQueColors.isiqueblue.shade400,
+          color: const Color(0xFFE1001E),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),

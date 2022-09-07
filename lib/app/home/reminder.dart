@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-import '../../api/ColorsApi.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class reminder extends StatefulWidget {
@@ -35,7 +34,7 @@ class _reminderState extends State<reminder> {
         centerTitle: true,
         titleTextStyle: GoogleFonts.pathwayGothicOne(
             fontWeight: FontWeight.w500, fontSize: 24, color: Colors.white),
-        backgroundColor: IsiQueColors.isiqueblue.shade400,
+        backgroundColor: const Color(0xFFE1001E),
         elevation: 0,
         automaticallyImplyLeading: true,
       ),
@@ -43,7 +42,7 @@ class _reminderState extends State<reminder> {
           color: Colors.grey.shade50,
           height: MediaQuery.of(context).size.height,
           child: Container(
-              color: IsiQueColors.isiqueblue.shade400,
+              color: const Color(0xFFE1001E),
               child: Container(
                 decoration: const BoxDecoration(
                   color: Colors.white,

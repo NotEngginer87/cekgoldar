@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../api/ColorsApi.dart';
 import 'Utils/LihatFoto.dart';
 
 class LihatProfil extends StatefulWidget {
@@ -27,12 +26,12 @@ class _LihatProfilState extends State<LihatProfil> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profil'),
-        backgroundColor: IsiQueColors.isiqueblue.shade400,
+        backgroundColor: Color(0xFFE1001E),
         elevation: 0,
         centerTitle: true,
       ),
       body: Container(
-          color: IsiQueColors.isiqueblue.shade400,
+          color: Color(0xFFE1001E),
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,

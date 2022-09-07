@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 
-import 'components/care_view.dart';
+import 'components/halaman3.dart';
 import 'components/center_next_button.dart';
-import 'components/mood_diary_vew.dart';
-import 'components/relax_view.dart';
-import 'components/splash_view.dart';
+import 'components/halaman 4.dart';
+import 'components/halaman2.dart';
+import 'components/halaman1.dart';
 import 'components/top_back_skip_view.dart';
 import 'components/welcome_view.dart';
 

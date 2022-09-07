@@ -162,6 +162,28 @@ class DatabaseServices {
     );
   }
 
+  static Future<void> setdatagolongandarahorangperuser(
+      int antrian,
+      String email,
+      String nama,
+      jeniskelamin,
+      nomorHP,
+      alamat,
+      goldar,
+      
+      ) async {
+    await userdata.doc(email).collection('user').doc(antrian.toString()).set(
+      {
+        'nama': nama,
+        'jeniskelamin': jeniskelamin,
+        'nomorHP': nomorHP,
+        'alamat': alamat,
+        'golongan darah': goldar,
+        'antrian':antrian,
+      },
+    );
+  }
+
 
   static Future<void> setdatagolongandarahorang2(
     int antrian,

@@ -1,9 +1,11 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
-class CareView extends StatelessWidget {
+class MoodDiaryVew extends StatelessWidget {
   final AnimationController animationController;
 
-  const CareView({Key? key, required this.animationController})
+  const MoodDiaryVew({Key? key, required this.animationController})
       : super(key: key);
 
   @override
@@ -13,8 +15,8 @@ class CareView extends StatelessWidget {
             .animate(CurvedAnimation(
       parent: animationController,
       curve: const Interval(
-        0.2,
         0.4,
+        0.6,
         curve: Curves.fastOutSlowIn,
       ),
     ));
@@ -23,39 +25,39 @@ class CareView extends StatelessWidget {
             .animate(CurvedAnimation(
       parent: animationController,
       curve: const Interval(
-        0.4,
         0.6,
-        curve: Curves.fastOutSlowIn,
-      ),
-    ));
-    final relaxFirstHalfAnimation =
-        Tween<Offset>(begin: const Offset(2, 0), end: const Offset(0, 0))
-            .animate(CurvedAnimation(
-      parent: animationController,
-      curve: const Interval(
-        0.2,
-        0.4,
-        curve: Curves.fastOutSlowIn,
-      ),
-    ));
-    final relaxSecondHalfAnimation =
-        Tween<Offset>(begin: const Offset(0, 0), end: const Offset(-2, 0))
-            .animate(CurvedAnimation(
-      parent: animationController,
-      curve: const Interval(
-        0.4,
-        0.6,
+        0.8,
         curve: Curves.fastOutSlowIn,
       ),
     ));
 
+    final moodFirstHalfAnimation =
+        Tween<Offset>(begin: const Offset(2, 0), end: const Offset(0, 0))
+            .animate(CurvedAnimation(
+      parent: animationController,
+      curve: const Interval(
+        0.4,
+        0.6,
+        curve: Curves.fastOutSlowIn,
+      ),
+    ));
+    final moodSecondHalfAnimation =
+        Tween<Offset>(begin: const Offset(0, 0), end: const Offset(-2, 0))
+            .animate(CurvedAnimation(
+      parent: animationController,
+      curve: const Interval(
+        0.6,
+        0.8,
+        curve: Curves.fastOutSlowIn,
+      ),
+    ));
     final imageFirstHalfAnimation =
         Tween<Offset>(begin: const Offset(4, 0), end: const Offset(0, 0))
             .animate(CurvedAnimation(
       parent: animationController,
       curve: const Interval(
-        0.2,
         0.4,
+        0.6,
         curve: Curves.fastOutSlowIn,
       ),
     ));
@@ -64,8 +66,8 @@ class CareView extends StatelessWidget {
             .animate(CurvedAnimation(
       parent: animationController,
       curve: const Interval(
-        0.4,
         0.6,
+        0.8,
         curve: Curves.fastOutSlowIn,
       ),
     ));
@@ -79,17 +81,9 @@ class CareView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
-              SlideTransition(
-                position: relaxFirstHalfAnimation,
-                child: SlideTransition(
-                  position: relaxSecondHalfAnimation,
-                  child: const Text(
-                    "Komplikasi",
-                    style:
-                        TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
-                  ),
-                ),
+              const Text(
+                "Blood Type Checker",
+                style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
               ),
               SlideTransition(
                 position: imageFirstHalfAnimation,
@@ -98,20 +92,27 @@ class CareView extends StatelessWidget {
                   child: Container(
                     constraints: const BoxConstraints(maxWidth: 350, maxHeight: 250),
                     child: Image.asset(
-                      'assets/onboard/komplikasi2.png',
+                      'assets/onboard/Halaman3.png',
                       fit: BoxFit.contain,
                     ),
                   ),
                 ),
               ),
-              const Padding(
-                padding:
-                    EdgeInsets.only(left: 64, right: 64, bottom: 16, top: 16),
-                child: Text(
-                  "Banyak penderita Diabetes yang mendapati komplikasi karena kontrol diri yang rendah",
-                  textAlign: TextAlign.center,
+              SlideTransition(
+                position: moodFirstHalfAnimation,
+                child: SlideTransition(
+                  position: moodSecondHalfAnimation,
+                  child: const Padding(
+                    padding: EdgeInsets.only(
+                        left: 64, right: 64, top: 16, bottom: 16),
+                    child: Text(
+                      "Platform penghimpun database golongan darah serta edukasi berkaitan tentang darah manusia.",
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 ),
               ),
+
             ],
           ),
         ),

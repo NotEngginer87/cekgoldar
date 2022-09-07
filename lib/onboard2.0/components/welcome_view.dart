@@ -70,7 +70,7 @@ class WelcomeView extends StatelessWidget {
                     maxHeight: MediaQuery.of(context).size.width * 2 / 3,
                   ),
                   child: Image.asset(
-                    'assets/onboard/Logo transparan.png',
+                    'assets/onboard/Halaman3.png',
                     fit: BoxFit.contain,
                   ),
                 ),
@@ -81,7 +81,7 @@ class WelcomeView extends StatelessWidget {
               SlideTransition(
                 position: welcomeFirstHalfAnimation,
                 child: const Text(
-                  "Selamat Datang di DIA.BETO",
+                  "Blood Type Checker",
                   style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -89,7 +89,7 @@ class WelcomeView extends StatelessWidget {
                 padding:
                     EdgeInsets.only(left: 64, right: 64, top: 16, bottom: 16),
                 child: Text(
-                  "Daftar untuk bisa mendapatkan akses ke DIA.BETO",
+                  "Daftar untuk bisa mendapatkan akses ke Blood Type Checker",
                   textAlign: TextAlign.center,
                 ),
               ),

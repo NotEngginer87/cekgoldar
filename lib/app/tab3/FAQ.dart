@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../../api/ColorsApi.dart';
 import '../../api/DatabaseServices.dart';
 
 class FAQ extends StatefulWidget {
@@ -26,10 +25,10 @@ class _FAQState extends State<FAQ> {
           title: const Text('FAQ'),
           centerTitle: true,
           elevation: 0,
-          backgroundColor: IsiQueColors.isiqueblue.shade400,
+          backgroundColor: const Color(0xFFE1001E),
         ),
         body: Container(
-            color: IsiQueColors.isiqueblue.shade400,
+            color: const Color(0xFFE1001E),
             child: Container(
                 decoration: const BoxDecoration(
                   color: Colors.white,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class MoodDiaryVew extends StatelessWidget {
+class CareView extends StatelessWidget {
   final AnimationController animationController;
 
-  const MoodDiaryVew({Key? key, required this.animationController})
+  const CareView({Key? key, required this.animationController})
       : super(key: key);
 
   @override
@@ -13,8 +13,8 @@ class MoodDiaryVew extends StatelessWidget {
             .animate(CurvedAnimation(
       parent: animationController,
       curve: const Interval(
+        0.2,
         0.4,
-        0.6,
         curve: Curves.fastOutSlowIn,
       ),
     ));
@@ -23,14 +23,23 @@ class MoodDiaryVew extends StatelessWidget {
             .animate(CurvedAnimation(
       parent: animationController,
       curve: const Interval(
+        0.4,
         0.6,
-        0.8,
         curve: Curves.fastOutSlowIn,
       ),
     ));
-
-    final moodFirstHalfAnimation =
+    final relaxFirstHalfAnimation =
         Tween<Offset>(begin: const Offset(2, 0), end: const Offset(0, 0))
+            .animate(CurvedAnimation(
+      parent: animationController,
+      curve: const Interval(
+        0.2,
+        0.4,
+        curve: Curves.fastOutSlowIn,
+      ),
+    ));
+    final relaxSecondHalfAnimation =
+        Tween<Offset>(begin: const Offset(0, 0), end: const Offset(-2, 0))
             .animate(CurvedAnimation(
       parent: animationController,
       curve: const Interval(
@@ -39,23 +48,14 @@ class MoodDiaryVew extends StatelessWidget {
         curve: Curves.fastOutSlowIn,
       ),
     ));
-    final moodSecondHalfAnimation =
-        Tween<Offset>(begin: const Offset(0, 0), end: const Offset(-2, 0))
-            .animate(CurvedAnimation(
-      parent: animationController,
-      curve: const Interval(
-        0.6,
-        0.8,
-        curve: Curves.fastOutSlowIn,
-      ),
-    ));
+
     final imageFirstHalfAnimation =
         Tween<Offset>(begin: const Offset(4, 0), end: const Offset(0, 0))
             .animate(CurvedAnimation(
       parent: animationController,
       curve: const Interval(
+        0.2,
         0.4,
-        0.6,
         curve: Curves.fastOutSlowIn,
       ),
     ));
@@ -64,8 +64,8 @@ class MoodDiaryVew extends StatelessWidget {
             .animate(CurvedAnimation(
       parent: animationController,
       curve: const Interval(
+        0.4,
         0.6,
-        0.8,
         curve: Curves.fastOutSlowIn,
       ),
     ));
@@ -79,9 +79,17 @@ class MoodDiaryVew extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                "DIA.BETO solusinya",
-                style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
+
+              SlideTransition(
+                position: relaxFirstHalfAnimation,
+                child: SlideTransition(
+                  position: relaxSecondHalfAnimation,
+                  child: const Text(
+                    "Penggolongan darah ",
+                    style:
+                        TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
+                  ),
+                ),
               ),
               SlideTransition(
                 position: imageFirstHalfAnimation,
@@ -90,27 +98,20 @@ class MoodDiaryVew extends StatelessWidget {
                   child: Container(
                     constraints: const BoxConstraints(maxWidth: 350, maxHeight: 250),
                     child: Image.asset(
-                      'assets/onboard/Logo transparan.png',
+                      'assets/onboard/Halaman2.png',
                       fit: BoxFit.contain,
                     ),
                   ),
                 ),
               ),
-              SlideTransition(
-                position: moodFirstHalfAnimation,
-                child: SlideTransition(
-                  position: moodSecondHalfAnimation,
-                  child: const Padding(
-                    padding: EdgeInsets.only(
-                        left: 64, right: 64, top: 16, bottom: 16),
-                    child: Text(
-                      "Aplikasi Monitoring Self-Care Management Penderita Diabetes yang Terintegrasi dengan Puskesmas",
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
+              const Padding(
+                padding:
+                    EdgeInsets.only(left: 64, right: 64, bottom: 16, top: 16),
+                child: Text(
+                  "sangat diperlukan untuk menghindari kejadian fatal akibat donor darah seperti kematian",
+                  textAlign: TextAlign.center,
                 ),
               ),
-
             ],
           ),
         ),

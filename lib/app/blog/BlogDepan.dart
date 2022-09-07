@@ -23,7 +23,7 @@ class _SelectBlog2State extends State<SelectBlog2> {
     return Column(
       children: [
         Container(
-          width: MediaQuery.of(context).size.width - 20,
+          width: MediaQuery.of(context).size.width - 100,
           decoration: BoxDecoration(
             color: Colors.grey.shade50,
             borderRadius: BorderRadius.circular(12),

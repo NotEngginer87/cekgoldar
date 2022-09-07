@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../api/ColorsApi.dart';
 
 final ButtonStyle untukKonsultasiButton = ElevatedButton.styleFrom(
-  onPrimary: Colors.white,
-  primary: IsiQueColors.isiqueblue.shade400,
+  foregroundColor: Colors.white, backgroundColor: const Color(0xFFE1001E),
   elevation: 2,
   padding: const EdgeInsets.symmetric(horizontal: 16),
   shape: const RoundedRectangleBorder(
@@ -13,8 +11,7 @@ final ButtonStyle untukKonsultasiButton = ElevatedButton.styleFrom(
 );
 
 final ButtonStyle untukKonsultasiButtongrey = ElevatedButton.styleFrom(
-  onPrimary: Colors.white,
-  primary: Colors.grey,
+  foregroundColor: Colors.white, backgroundColor: Colors.grey,
   elevation: 2,
   padding: const EdgeInsets.symmetric(horizontal: 16),
   shape: const RoundedRectangleBorder(
@@ -23,8 +20,7 @@ final ButtonStyle untukKonsultasiButtongrey = ElevatedButton.styleFrom(
 );
 
 final ButtonStyle untukKonsultasiButtonwhite = ElevatedButton.styleFrom(
-  onPrimary: IsiQueColors.isiqueblue.shade400,
-  primary: Colors.white,
+  foregroundColor: const Color(0xFFE1001E), backgroundColor: Colors.white,
   elevation: 2,
   padding: const EdgeInsets.symmetric(horizontal: 16),
   shape: const RoundedRectangleBorder(
@@ -33,9 +29,7 @@ final ButtonStyle untukKonsultasiButtonwhite = ElevatedButton.styleFrom(
 );
 
 final ButtonStyle untukKonsultasiButtonmax = ElevatedButton.styleFrom(
-  onPrimary: Colors.white,
-  primary: IsiQueColors.isiqueblue.shade400,
-
+  foregroundColor: Colors.white, backgroundColor: const Color(0xFFE1001E),
   elevation: 2,
   padding: const EdgeInsets.symmetric(horizontal: 16),
   shape: const RoundedRectangleBorder(
@@ -44,8 +38,7 @@ final ButtonStyle untukKonsultasiButtonmax = ElevatedButton.styleFrom(
 );
 
 final ButtonStyle untukKonsultasiButtonlebar = ElevatedButton.styleFrom(
-  onPrimary: Colors.white,
-  primary: IsiQueColors.isiqueblue.shade400,
+  foregroundColor: Colors.white, backgroundColor: const Color(0xFFE1001E),
   elevation: 2,
   padding: const EdgeInsets.symmetric(horizontal: 16),
   shape: const RoundedRectangleBorder(
@@ -54,8 +47,7 @@ final ButtonStyle untukKonsultasiButtonlebar = ElevatedButton.styleFrom(
 );
 
 final ButtonStyle untukKonsultasiButtonBlueDiabeto = ElevatedButton.styleFrom(
-  onPrimary: IsiQueColors.isiqueblue.shade400,
-  primary: Colors.white,
+  foregroundColor: const Color(0xFFE1001E), backgroundColor: Colors.white,
   elevation: 2,
   padding: const EdgeInsets.symmetric(horizontal: 16),
   shape: const RoundedRectangleBorder(
@@ -63,9 +55,9 @@ final ButtonStyle untukKonsultasiButtonBlueDiabeto = ElevatedButton.styleFrom(
   ),
 );
 
-final ButtonStyle untukKonsultasiButtonBlueDiabetoinverted = ElevatedButton.styleFrom(
-  onPrimary: Colors.white,
-  primary: IsiQueColors.isiqueblue.shade400,
+final ButtonStyle untukKonsultasiButtonBlueDiabetoinverted =
+    ElevatedButton.styleFrom(
+  foregroundColor: Colors.white, backgroundColor: const Color(0xFFE1001E),
   elevation: 2,
   padding: const EdgeInsets.symmetric(horizontal: 16),
   shape: const RoundedRectangleBorder(

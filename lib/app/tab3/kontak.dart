@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types, non_constant_identifier_names, unused_local_variable, deprecated_member_use
+// ignore_for_file: camel_case_types, non_constant_identifier_names, unused_local_variable, deprecated_member_use, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
@@ -46,7 +46,7 @@ class kontak extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(
-            'Kontak PKM',
+            'Kontak Admin Blood Type Checker',
             style: GoogleFonts.pathwayGothicOne(
                 fontWeight: FontWeight.w500, fontSize: 20),
           ),

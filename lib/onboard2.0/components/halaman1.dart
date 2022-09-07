@@ -42,24 +42,18 @@ class _SplashViewState extends State<SplashView> {
                 width: MediaQuery.of(context).size.width * 0.75,
                 height: MediaQuery.of(context).size.width * 0.75,
                 child: Image.asset(
-                  'assets/onboard/Logo transparan.png',
+                  'assets/onboard/Halaman3.png',
                   fit: BoxFit.cover,
                 ),
               ),
               const Padding(
                 padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
                 child: Text(
-                  "DIA.BETO",
+                  "Blood Type Checker",
                   style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 64, right: 64),
-                child: Text(
-                  "Control Diabetic Until Zero",
-                  textAlign: TextAlign.center,
-                ),
-              ),
+
               const SizedBox(
                 height: 48,
               ),

@@ -1,7 +1,6 @@
-// ignore_for_file: avoid_print, unnecessary_null_comparison, must_be_immutable, deprecated_member_use, avoid_types_as_parameter_names, non_constant_identifier_names
+// ignore_for_file: avoid_print, unnecessary_null_comparison, must_be_immutable, deprecated_member_use, avoid_types_as_parameter_names, non_constant_identifier_names, depend_on_referenced_packages, library_private_types_in_public_api, file_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gender_picker/source/enums.dart';
 import 'package:gender_picker/source/gender_picker.dart';
@@ -13,7 +12,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../api/DatabaseServices.dart';
-import '../Utils/style.dart';
 
 class RekamMedis extends StatefulWidget {
   RekamMedis(
@@ -72,13 +70,7 @@ class _RekamMedisState extends State<RekamMedis> {
   Widget build(BuildContext context) {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     CollectionReference console = firestore.collection('console');
-    CollectionReference userdata = firestore.collection('user');
-    CollectionReference listpasiencount =
-        firestore.collection('listpasiencount');
 
-    final FirebaseAuth auth = FirebaseAuth.instance;
-    final User? user = auth.currentUser;
-    final emaila = user!.email;
 
     return Scaffold(
       appBar: AppBar(
@@ -238,8 +230,8 @@ class _RekamMedisState extends State<RekamMedis> {
   }
 
   uploadImage() async {
-    final _storage = FirebaseStorage.instance;
-    final _picker = ImagePicker();
+    final storage = FirebaseStorage.instance;
+    final picker = ImagePicker();
     PickedFile? image;
 
     //Check Permissions
@@ -249,7 +241,7 @@ class _RekamMedisState extends State<RekamMedis> {
 
     if (permissionStatus.isGranted) {
       //Select Image
-      image = await _picker.getImage(source: ImageSource.gallery);
+      image = await picker.getImage(source: ImageSource.gallery);
 
       var file = File(image!.path);
 
@@ -258,7 +250,7 @@ class _RekamMedisState extends State<RekamMedis> {
 
       if (image != null) {
         //Upload to Firebase
-        var snapshot = await _storage
+        var snapshot = await storage
             .ref()
             .child(destination)
             .putFile(file)
